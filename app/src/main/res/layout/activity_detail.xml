@@ -34,13 +34,13 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/btn_fragment_A"
+            android:id="@+id/btn_perfil_fragment"
             android:layout_weight="1"
             android:text="PERFIL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <Button
-            android:id="@+id/btn_fragment_B"
+            android:id="@+id/btn_lista_fragment"
             android:layout_weight="1"
             android:text="LISTA"
             android:layout_width="match_parent"

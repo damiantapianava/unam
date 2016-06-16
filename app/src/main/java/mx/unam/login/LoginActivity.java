@@ -40,7 +40,7 @@ public class LoginActivity extends LoginActivityDMO implements View.OnClickListe
         user_email = email.getText().toString();
               pass = password.getText().toString();
 
-        user_ENABLED = user_email.equals("damian") && pass.equals("pass");
+        user_ENABLED = (user_email.equals("damian") || user_email.equals("oscar")) && pass.equals("pass");
 
         loading.setVisibility(View.VISIBLE);
 
