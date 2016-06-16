@@ -34,7 +34,7 @@ public class ProfileFragmentDMO extends Fragment
 
     public void setBundle(Bundle bundle)
     {
-        if(singleton != null)
+        if(!singleton.isAdded())
         {
             singleton.setArguments(bundle);
         }
