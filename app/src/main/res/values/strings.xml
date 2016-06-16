@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ClaseUno</string>
+    <string name="username_text">User</string>
+    <string name="hello" formatted = "false">hello %s welcome</string>
+</resources>
