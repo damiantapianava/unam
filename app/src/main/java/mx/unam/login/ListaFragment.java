@@ -1,6 +1,6 @@
 package mx.unam.login;
 
-import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -12,20 +12,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-public class ListaFragment extends Fragment
+public class ListaFragment extends ListaFragmentDMO
 {
-    private View view;
-    private ListView listView;
-    private ModelItem item;
-    private AdapterItemList adapter_item;
-    private EditText mItemsText;
-    private List<ModelItem> listModelItem = new ArrayList<>();
-
-    private int counter;
-    private boolean isWifi;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -45,6 +33,11 @@ public class ListaFragment extends Fragment
                 item = listModelItem.get(position);
 
                 Toast.makeText(getActivity(), item.item, Toast.LENGTH_SHORT).show();
+
+                intent = new Intent(getActivity().getApplicationContext(), ItemDetailActivity.class);
+                intent.putExtra("item", item.item);
+
+                getActivity().startActivity(intent);
             }
         });
 
