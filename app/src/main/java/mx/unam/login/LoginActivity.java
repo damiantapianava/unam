@@ -1,5 +1,6 @@
 package mx.unam.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -20,6 +21,7 @@ public class LoginActivity extends LoginActivityDMO implements View.OnClickListe
         loading = findViewById(R.id.progress);
 
         findViewById(R.id.btn_login).setOnClickListener(this);
+        findViewById(R.id.btn_init_calculator).setOnClickListener(this);
     }
 
     @Override
@@ -31,6 +33,9 @@ public class LoginActivity extends LoginActivityDMO implements View.OnClickListe
         {
             case R.id.btn_login:
                 processData();
+                break;
+            case R.id.btn_init_calculator:
+                startActivity(new Intent(context, CalculatorActivity.class));
                 break;
         }
     }

@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="claseuno.unam.mx.claseuno.MainActivity">
+    android:paddingLeft  = "@dimen/activity_horizontal_margin"
+    android:paddingRight = "@dimen/activity_horizontal_margin"
+    android:paddingTop   = "@dimen/activity_vertical_margin"
+    tools:context = "claseuno.unam.mx.claseuno.MainActivity">
 
     <EditText
         android:id="@+id/main_ACT_email"
@@ -28,7 +28,15 @@
         android:id="@+id/progress"
         android:visibility="gone"
         android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_init_calculator"
+        android:text="@string/calculator"
+        android:layout_marginTop="100dp"
+        android:layout_below="@+id/main_ACT_password"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <LinearLayout
