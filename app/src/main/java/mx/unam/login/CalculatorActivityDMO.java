@@ -50,6 +50,10 @@ public abstract class CalculatorActivityDMO extends AppCompatActivity implements
         findViewById(R.id.btn_siete_CALC).setEnabled(btn_ENBLED);
         findViewById(R.id.btn_ocho_CALC).setEnabled(btn_ENBLED);
         findViewById(R.id.btn_nueve_CALC).setEnabled(btn_ENBLED);
+        findViewById(R.id.btn_modulo_CALC).setEnabled(btn_ENBLED);
+        findViewById(R.id.btn_div_CALC).setEnabled(btn_ENBLED);
+        findViewById(R.id.btn_mul_CALC).setEnabled(btn_ENBLED);
+        findViewById(R.id.btn_resta_CALC).setEnabled(btn_ENBLED);
     }
 
 }
