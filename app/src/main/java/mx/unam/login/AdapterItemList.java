@@ -39,7 +39,7 @@ public class AdapterItemList extends ArrayAdapter<ModelItem>
         model = getItem(position);
 
         txt_item.setText     (model.item);
-        txt_item_desc.setText(model.id);
+        txt_item_desc.setText(model.description);
         img.setImageResource (model.resource_id);
 
         return convertView;
