@@ -22,6 +22,9 @@ public class LoginActivity extends LoginActivityDMO implements View.OnClickListe
 
         findViewById(R.id.btn_login).setOnClickListener(this);
         findViewById(R.id.btn_init_calculator).setOnClickListener(this);
+        findViewById(R.id.btnRegisterLogin).setOnClickListener(this);
+
+        preference = new PreferenceUtil(getApplicationContext());
     }
 
     @Override
@@ -37,29 +40,9 @@ public class LoginActivity extends LoginActivityDMO implements View.OnClickListe
             case R.id.btn_init_calculator:
                 startActivity(new Intent(context, CalculatorActivity.class));
                 break;
+            case R.id.btnRegisterLogin:
+                launchRegister();
+                break;
         }
-    }
-
-    private void processData()
-    {
-        user_email = email.getText().toString();
-              pass = password.getText().toString();
-
-        user_ENABLED = (user_email.equals("damian")) && pass.equals("pass");
-
-        user_ENABLED = true;
-
-        loading.setVisibility(View.VISIBLE);
-
-        starter = new StarterActivityIMP();
-        starter.setContext(context);
-        starter.setActivity(this);
-        starter.setEmail(user_email);
-        starter.setUser_ENABLED(user_ENABLED);
-
-        handler = new Handler();
-        handler.postDelayed(starter, seconds);
-
-        loading.setVisibility(View.GONE);
     }
 }
