@@ -7,9 +7,6 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public abstract class ListaFragmentDMO extends Fragment
         implements AdapterView.OnItemClickListener, View.OnClickListener
 {
