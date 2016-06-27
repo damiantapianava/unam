@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class LoginActivity extends LoginActivityAMO implements View.OnClickListener, CompoundButton.OnCheckedChangeListener
 {
@@ -18,9 +19,10 @@ public class LoginActivity extends LoginActivityAMO implements View.OnClickListe
 
         setContentView(R.layout.activity_login);
 
-        email    = (EditText) findViewById(R.id.main_ACT_email);
-        password = (EditText) findViewById(R.id.main_ACT_password);
-        checkBox = (CheckBox) findViewById(R.id.chkRememberMe);
+        email        = (EditText) findViewById(R.id.main_ACT_email);
+        password     = (EditText) findViewById(R.id.main_ACT_password);
+        checkBox     = (CheckBox) findViewById(R.id.chkRememberMe);
+        txtLastLogin = (TextView) findViewById(R.id.txtLastLogin);
 
         loading = findViewById(R.id.progress);
 
@@ -32,26 +34,7 @@ public class LoginActivity extends LoginActivityAMO implements View.OnClickListe
 
         context = getApplicationContext();
 
-        preference = new PreferenceUtil(context);
-
-        remember_login_ENABLED = preference.isRemember_login_ENABLED();
-                        userID = preference.getUserId();
-
-        checkBox.setChecked(remember_login_ENABLED);
-
-        if(remember_login_ENABLED && userID > 0)
-        {
-            user_DAO = new UserDataSource(context);
-
-            user = user_DAO.findUserById(userID);
-
-            if(user != null)
-            {
-                email.setText(user.getUserName());
-                password.setText(user.getPassword());
-                //findViewById(R.id.btnRegisterLogin).performClick();
-            }
-        }
+        init_preference();
     }
 
     @Override

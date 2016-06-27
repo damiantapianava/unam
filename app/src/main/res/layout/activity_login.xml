@@ -32,6 +32,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <LinearLayout
+        android:layout_below="@+id/chkRememberMe"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_weight=".70"
+            android:layout_marginTop="16dp"
+            android:text="Last login date:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_weight=".30"
+            android:layout_marginTop="16dp"
+            android:id="@+id/txtLastLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
     <ProgressBar
         android:id="@+id/progress"
         android:visibility="gone"
@@ -39,17 +59,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/btn_init_calculator"
-        android:text="@string/calculator"
-        android:layout_marginTop="100dp"
-        android:layout_below="@+id/main_ACT_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     <LinearLayout
+        android:layout_marginTop="48dp"
+        android:layout_below="@+id/chkRememberMe"
         android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
@@ -67,6 +80,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_init_calculator"
+        android:text="@string/calculator"
+        android:layout_marginTop="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>
 

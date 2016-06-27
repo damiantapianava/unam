@@ -8,7 +8,7 @@ public abstract class MySqliteHelperDMO extends SQLiteOpenHelper
 {
     protected final static String DATABASE_NAME ="unamsqlite";
 
-    protected final static int DATABASE_VERSION = 5;
+    protected final static int DATABASE_VERSION = 6;
 
     public static final String TABLE_NAME = "item_table";
     public static final String TABLE_NAME_USER = "user_table";
@@ -20,6 +20,7 @@ public abstract class MySqliteHelperDMO extends SQLiteOpenHelper
 
     public static final String COLUMN_USER_NAME = "username";
     public static final String COLUMN_USER_PASS = "password";
+    public static final String COLUMN_USER_LOGIN_DATE = "last_login_date";
 
     protected static final String CREATE_TABLE  = "create table IF NOT EXISTS " + TABLE_NAME + " ( " +
             COLUMN_ID + " integer primary key autoincrement,"+
@@ -28,9 +29,10 @@ public abstract class MySqliteHelperDMO extends SQLiteOpenHelper
             COLUMN_ITEM_RESOURCE + " integer not null)";
 
     protected static final String CREATE_TABLE_USER  = "create table IF NOT EXISTS " + TABLE_NAME_USER + " ( " +
-            COLUMN_ID + " integer primary key autoincrement,"+
-            COLUMN_USER_NAME + " text not null,"+
-            COLUMN_USER_PASS + " text not null)";
+            COLUMN_ID              + " integer primary key autoincrement,"+
+            COLUMN_USER_NAME       + " text not null,"+
+            COLUMN_USER_PASS       + " text not null," +
+            COLUMN_USER_LOGIN_DATE + " text not null default '')";
 
     public MySqliteHelperDMO(Context context)
     {

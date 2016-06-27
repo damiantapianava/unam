@@ -7,6 +7,30 @@ import android.widget.Toast;
 
 public abstract class LoginActivityAMO extends LoginActivityDMO
 {
+    protected void init_preference()
+    {
+        preference = new PreferenceUtil(context);
+
+        remember_login_ENABLED = preference.isRemember_login_ENABLED();
+        userID = preference.getUserId();
+
+        checkBox.setChecked(remember_login_ENABLED);
+
+        if(remember_login_ENABLED && userID > 0)
+        {
+            user_DAO = new UserDataSource(context);
+
+            user = user_DAO.findUserById(userID);
+
+            if(user != null)
+            {
+                       email.setText(user.getUserName());
+                    password.setText(user.getPassword());
+                txtLastLogin.setText(user.getLast_login_date());
+            }
+        }
+    }
+
     protected void processData()
     {
         user_email = email.getText().toString();
@@ -42,11 +66,17 @@ public abstract class LoginActivityAMO extends LoginActivityDMO
 
                     preference.saveUserId(user);
 
-                    intent = new Intent(context, DetailsActivity.class);
-                    intent.putExtra("user_email", user_email);
-                    intent.putExtra("remember_login_ENABLED", remember_login_ENABLED);
+                    boolean update_OK = user_DAO.update_login_date(user);
 
-                    startActivity(intent);
+                    if(update_OK) {
+                        intent = new Intent(context, DetailsActivity.class);
+                        intent.putExtra("user_email", user_email);
+                        intent.putExtra("remember_login_ENABLED", remember_login_ENABLED);
+
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
+                    }
 
                 } else {
 

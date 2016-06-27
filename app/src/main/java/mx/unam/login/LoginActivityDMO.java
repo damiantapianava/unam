@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public abstract class LoginActivityDMO extends AppCompatActivity
 {
@@ -14,6 +15,7 @@ public abstract class LoginActivityDMO extends AppCompatActivity
 
     protected EditText email;
     protected EditText password;
+    protected TextView txtLastLogin;
     protected View loading;
     protected CheckBox checkBox;
 

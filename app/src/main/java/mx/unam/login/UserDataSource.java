@@ -5,7 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class UserDataSource extends UserDataSourceDMO
@@ -35,6 +37,29 @@ public class UserDataSource extends UserDataSourceDMO
         }
     }
 
+    public boolean update_login_date(ModelUser user)
+    {
+        selection = MySqliteHelper.COLUMN_ID + " = ?";
+
+        selectionArgs = new String[]{user.getId().toString()};
+
+        String today = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss").format(new Date());
+
+        contentValues = new ContentValues();
+        contentValues.put(MySqliteHelper.COLUMN_USER_LOGIN_DATE, today);
+
+        int row_afected = db.update(MySqliteHelper.TABLE_NAME_USER, contentValues, selection, selectionArgs);
+
+        if(row_afected > 0)
+        {
+            return true;
+
+        } else  {
+
+            return false;
+        }
+    }
+
     public ModelUser findUserById(Integer userId)
     {
         selection = MySqliteHelper.COLUMN_ID + " = ?";
@@ -45,14 +70,16 @@ public class UserDataSource extends UserDataSourceDMO
 
         if(cursor.moveToNext())
         {
-            Integer id    = cursor.getInt   (cursor.getColumnIndexOrThrow(MySqliteHelper.COLUMN_ID));
-            this.username = cursor.getString(cursor.getColumnIndexOrThrow(MySqliteHelper.COLUMN_USER_NAME));
-            this.password = cursor.getString(cursor.getColumnIndexOrThrow(MySqliteHelper.COLUMN_USER_PASS));
+            Integer id           = cursor.getInt   (cursor.getColumnIndexOrThrow(MySqliteHelper.COLUMN_ID));
+            this.username        = cursor.getString(cursor.getColumnIndexOrThrow(MySqliteHelper.COLUMN_USER_NAME));
+            this.password        = cursor.getString(cursor.getColumnIndexOrThrow(MySqliteHelper.COLUMN_USER_PASS));
+            this.last_login_date = cursor.getString(cursor.getColumnIndexOrThrow(MySqliteHelper.COLUMN_USER_LOGIN_DATE));
 
             user = new ModelUser();
             user.setId(id);
             user.setUserName(this.username);
             user.setPassword(this.password);
+            user.setLast_login_date(this.last_login_date);
 
         } else {
 
@@ -78,14 +105,16 @@ public class UserDataSource extends UserDataSourceDMO
 
         while (cursor.moveToNext())
         {
-            Integer id    = cursor.getInt   (cursor.getColumnIndexOrThrow(MySqliteHelper.COLUMN_ID));
-            this.username = cursor.getString(cursor.getColumnIndexOrThrow(MySqliteHelper.COLUMN_USER_NAME));
-            this.password = cursor.getString(cursor.getColumnIndexOrThrow(MySqliteHelper.COLUMN_USER_PASS));
+            Integer id           = cursor.getInt   (cursor.getColumnIndexOrThrow(MySqliteHelper.COLUMN_ID));
+            this.username        = cursor.getString(cursor.getColumnIndexOrThrow(MySqliteHelper.COLUMN_USER_NAME));
+            this.password        = cursor.getString(cursor.getColumnIndexOrThrow(MySqliteHelper.COLUMN_USER_PASS));
+            this.last_login_date = cursor.getString(cursor.getColumnIndexOrThrow(MySqliteHelper.COLUMN_USER_LOGIN_DATE));
 
             user = new ModelUser();
             user.setId(id);
             user.setUserName(this.username);
             user.setPassword(this.password);
+            user.setLast_login_date(this.last_login_date);
 
             modelUserList.add(user);
         }

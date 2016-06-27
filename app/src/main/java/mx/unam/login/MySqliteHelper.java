@@ -23,9 +23,12 @@ public class MySqliteHelper extends MySqliteHelperDMO
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
     {
-        Log.d(ServiceTimer.TAG,"MySqliteHelper.onUpgrade(): from " + oldVersion+ " to " + newVersion);
+        Log.d(ServiceTimer.TAG, "MySqliteHelper.onUpgrade(): from " + oldVersion+ " to " + newVersion);
 
         db.execSQL(CREATE_TABLE);
+
+        db.execSQL("DROP TABLE " + TABLE_NAME_USER);
+
         db.execSQL(CREATE_TABLE_USER);
     }
 }

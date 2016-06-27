@@ -24,6 +24,7 @@ public abstract class UserDataSourceDMO
 
     protected String username;
     protected String password;
+    protected String last_login_date;
     protected String selection;
 
     protected String[] selectionArgs;

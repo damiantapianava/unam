@@ -8,6 +8,7 @@ public final class ModelUser implements Serializable
 
     private String userName;
     private String password;
+    private String last_login_date;
 
     public Integer getId() {
         return id;
@@ -33,5 +34,13 @@ public final class ModelUser implements Serializable
     public String getPassword()
     {
         return password;
+    }
+
+    public String getLast_login_date() {
+        return last_login_date;
+    }
+
+    public void setLast_login_date(String last_login_date) {
+        this.last_login_date = last_login_date;
     }
 }
