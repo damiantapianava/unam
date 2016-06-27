@@ -46,15 +46,18 @@ public class ItemDataSource
 
         while (cursor.moveToNext())
         {
-            int id = cursor.getInt(cursor.getColumnIndexOrThrow(MySqliteHelper.COLUMN_ID));
-            String itemName=cursor.getString(cursor.getColumnIndexOrThrow(MySqliteHelper.COLUMN_ITEM_NAME));
+            int id             = cursor.getInt   (cursor.getColumnIndexOrThrow(MySqliteHelper.COLUMN_ID));
+            String itemName    = cursor.getString(cursor.getColumnIndexOrThrow(MySqliteHelper.COLUMN_ITEM_NAME));
             String description = cursor.getString(cursor.getColumnIndexOrThrow(MySqliteHelper.COLUMN_ITEM_DESC));
-            int resourceId = cursor.getInt(cursor.getColumnIndexOrThrow(MySqliteHelper.COLUMN_ITEM_RESOURCE));
+            int resourceId     = cursor.getInt   (cursor.getColumnIndexOrThrow(MySqliteHelper.COLUMN_ITEM_RESOURCE));
+
             ModelItem modelItem = new ModelItem();
-            modelItem.id=id;
-            modelItem.resource_id=resourceId;
-            modelItem.description=description;
-            modelItem.item=itemName;
+
+            modelItem.id = id;
+            modelItem.resource_id = resourceId;
+            modelItem.description = description;
+            modelItem.item = itemName;
+
             modelItemList.add(modelItem);
         }
 

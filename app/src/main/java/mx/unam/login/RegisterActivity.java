@@ -1,6 +1,5 @@
 package mx.unam.login;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -9,21 +8,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener
+public class RegisterActivity extends RegisterActivityDMO implements View.OnClickListener
 {
-    private EditText mUser;
-    private EditText mPassword;
-
-    private PreferenceUtil writer;
-
-    protected UserDataSource userDataSource;
-
-    protected ModelUser user;
-
-    protected String mUserName;
-    protected String password;
-
-    protected boolean new_user_ENABLED;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
@@ -41,6 +27,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v)
     {
+        context = getApplicationContext();
+
         try
         {
             mUserName = mUser.getText().toString();
@@ -50,23 +38,30 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         } catch (Exception e) {
 
-            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
         }
 
         if(new_user_ENABLED)
         {
-            user = new ModelUser(mUserName, password);
+            user = new ModelUser();
+            user.setUserName(mUserName);
+            user.setPassword(password);
 
-            writer = new PreferenceUtil(getApplicationContext());
+/*
+            writer = new PreferenceUtil(context);
             writer.saveUser(user);
+*/
 
-            userDataSource = new UserDataSource(this);
-            boolean add_OK = userDataSource.saveItem(user);
+            user_DAO = new UserDataSource(context);
+            boolean add_OK = user_DAO.persist(user);
 
-            if(add_OK) {
+            if(add_OK)
+            {
                 finish();
+
             } else {
-                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
             }
         }
     }

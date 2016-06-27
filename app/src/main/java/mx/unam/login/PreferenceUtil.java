@@ -11,16 +11,27 @@ public class PreferenceUtil
 
     private final SharedPreferences sp;
 
+    private boolean remember_login_ENABLED;
+
     public PreferenceUtil(Context context)
     {
-        sp = context.getSharedPreferences(FILE_NAME,Context.MODE_PRIVATE);
+        sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
     }
 
-    public void saveUser(ModelUser modelUser)
+    public void saveUserId(ModelUser modelUser)
     {
-        //TODO validar si modelUser==null
+        sp.edit().putInt("user_id",  modelUser.getId()).apply();
+/*
         sp.edit().putString("user_name",     modelUser.getUserName()).apply();
         sp.edit().putString("user_password", modelUser.getPassword()).apply();
+*/
+    }
+
+    public Integer getUserId()
+    {
+        Integer user_id = sp.getInt("user_id", -1);
+
+        return user_id;
     }
 
     public ModelUser getUser()
@@ -33,8 +44,23 @@ public class PreferenceUtil
             return null;
         }
 
-        return new ModelUser(mUser,mPassword);
+        ModelUser user = new ModelUser();
+        user.setUserName(mUser);
+        user.setPassword(mPassword);
 
+        return user;
+    }
+
+    public void setRemember_login_ENABLED(boolean remember_login_ENABLED)
+    {
+        sp.edit().putBoolean("key_remember_login", remember_login_ENABLED).apply();
+    }
+
+    public boolean isRemember_login_ENABLED()
+    {
+        remember_login_ENABLED = sp.getBoolean("key_remember_login", false);
+
+        return remember_login_ENABLED;
     }
 
 
