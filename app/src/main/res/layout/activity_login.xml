@@ -76,10 +76,18 @@
         <Button
             android:id="@+id/btn_login"
             android:layout_weight="1"
-            android:text="Iniciar"
+            android:text="@string/iniciar_sesion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:text="@string/cerrar_sesion"
+        android:layout_below="@+id/chkRememberMe"
+        android:layout_marginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/btn_init_calculator"

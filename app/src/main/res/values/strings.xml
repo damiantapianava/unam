@@ -2,5 +2,7 @@
     <string name="app_name">ClaseUno</string>
     <string name="username_text">User</string>
     <string name="calculator">CALCULATOR</string>
+    <string name="cerrar_sesion">Log Out</string>
+    <string name="iniciar_sesion">Log In</string>
     <string name="hello" formatted = "false">hello %s welcome</string>
 </resources>

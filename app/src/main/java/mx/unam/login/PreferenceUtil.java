@@ -34,6 +34,11 @@ public class PreferenceUtil
         return user_id;
     }
 
+    public void remove(String key)
+    {
+        sp.edit().remove(key).apply();
+    }
+
     public ModelUser getUser()
     {
         String mUser     = sp.getString("user_name",null);

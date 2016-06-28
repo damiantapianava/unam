@@ -29,6 +29,7 @@ public class LoginActivity extends LoginActivityAMO implements View.OnClickListe
         findViewById(R.id.btn_login).setOnClickListener(this);
         findViewById(R.id.btn_init_calculator).setOnClickListener(this);
         findViewById(R.id.btnRegisterLogin).setOnClickListener(this);
+        findViewById(R.id.btn_logout).setOnClickListener(this);
 
         checkBox.setOnCheckedChangeListener(this);
 
@@ -53,6 +54,10 @@ public class LoginActivity extends LoginActivityAMO implements View.OnClickListe
             case R.id.btnRegisterLogin:
                 launchRegister();
                 break;
+            case R.id.btn_logout:
+                logout();
+                break;
+
         }
     }
 

@@ -31,6 +31,13 @@ public abstract class LoginActivityAMO extends LoginActivityDMO
         }
     }
 
+    protected void logout()
+    {
+        preference = new PreferenceUtil(context);
+
+        preference.remove("user_id");
+    }
+
     protected void processData()
     {
         user_email = email.getText().toString();
