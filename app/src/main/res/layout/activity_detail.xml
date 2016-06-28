@@ -40,6 +40,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <TextView
+            android:layout_margin="16dp"
+            android:gravity="right"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:id="@+id/txtTimer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <fragment
             android:id="@+id/fragment_XML"
             android:layout_weight="1"

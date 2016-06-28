@@ -21,6 +21,8 @@
         <activity android:name = ".CalculatorActivity" />
         <activity android:name =   ".RegisterActivity" />
 
+        <service android:name="ServiceTimer"/>
+
 
     </application>
 

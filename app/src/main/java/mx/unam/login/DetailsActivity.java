@@ -1,6 +1,11 @@
 package mx.unam.login;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -27,6 +32,8 @@ public class DetailsActivity extends DetailsActivityAMO implements View.OnClickL
 
         findViewById(R.id.btn_perfil_fragment).setOnClickListener(this);
         findViewById(R.id.btn_lista_fragment).setOnClickListener(this);
+
+        txtTimer = (TextView) findViewById(R.id.txtTimer);
     }
 
     @Override
@@ -42,5 +49,38 @@ public class DetailsActivity extends DetailsActivityAMO implements View.OnClickL
                 init_lista_fragment();
                 break;
         }
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+
+        filter = new IntentFilter();
+        filter.addAction(ServiceTimer.ACTION_SEND_TIMER);
+
+        registerReceiver(broadcastReceiver, filter);
+
+        Log.d(ServiceTimer.TAG,"OnResume, se reinicia boradcast");
+    }
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+
+        Log.d(ServiceTimer.TAG,"onPause quitando broadcast");
+
+        unregisterReceiver(broadcastReceiver);
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+
+        Log.d(ServiceTimer.TAG,"OnDestroy, terminando servicio");
+
+        stopService(new Intent(getApplicationContext(), ServiceTimer.class));
     }
 }

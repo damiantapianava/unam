@@ -81,7 +81,11 @@ public abstract class LoginActivityAMO extends LoginActivityDMO
                         intent.putExtra("remember_login_ENABLED", remember_login_ENABLED);
 
                         startActivity(intent);
+
+                        startService(new Intent(context, ServiceTimer.class));
+
                     } else {
+
                         Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
                     }
 
