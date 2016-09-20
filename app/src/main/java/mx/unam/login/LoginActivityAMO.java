@@ -12,7 +12,7 @@ public abstract class LoginActivityAMO extends LoginActivityDMO
         preference = new PreferenceUtil(context);
 
         remember_login_ENABLED = preference.isRemember_login_ENABLED();
-        userID = preference.getUserId();
+                        userID = preference.getUserId();
 
         checkBox.setChecked(remember_login_ENABLED);
 
@@ -52,7 +52,7 @@ public abstract class LoginActivityAMO extends LoginActivityDMO
             {
                 loading.setVisibility(View.GONE);
 
-                user = preference.getUser();
+                //user = preference.getUser();
 
                 user_DAO = new UserDataSource(context);
 
@@ -82,7 +82,10 @@ public abstract class LoginActivityAMO extends LoginActivityDMO
 
                         startActivity(intent);
 
-                        startService(new Intent(context, ServiceTimer.class));
+                        intent_service = new Intent(context, ServiceTimer.class);
+                        intent_service.putExtra("elapsed_time", preference.getElapsedTime());
+
+                        startService(intent_service);
 
                     } else {
 

@@ -37,6 +37,44 @@ public class DetailsActivity extends DetailsActivityAMO implements View.OnClickL
     }
 
     @Override
+    protected void onResume()
+    {
+        super.onResume();
+
+        filter = new IntentFilter();
+        filter.addAction(ServiceTimer.ACTION_SEND_TIMER);
+
+        registerReceiver(broadcastReceiver, filter);
+
+        Log.d(ServiceTimer.TAG, "DetailsActivity.OnResume(): ");
+    }
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+
+        unregisterReceiver(broadcastReceiver);
+
+        Log.d(ServiceTimer.TAG, "DetailsActivity.onPause(): ");
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+
+        context = getApplicationContext();
+
+        preference = new PreferenceUtil(context);
+        preference.saveElapsedTime(counter);
+
+        stopService(new Intent(context, ServiceTimer.class));
+
+        Log.d(ServiceTimer.TAG, "DetailsActivity.onDestroy(): " + counter);
+    }
+
+    @Override
     public void onClick(View v)
     {
         switch (v.getId())
@@ -49,38 +87,5 @@ public class DetailsActivity extends DetailsActivityAMO implements View.OnClickL
                 init_lista_fragment();
                 break;
         }
-    }
-
-    @Override
-    protected void onResume()
-    {
-        super.onResume();
-
-        filter = new IntentFilter();
-        filter.addAction(ServiceTimer.ACTION_SEND_TIMER);
-
-        registerReceiver(broadcastReceiver, filter);
-
-        Log.d(ServiceTimer.TAG,"OnResume, se reinicia boradcast");
-    }
-
-    @Override
-    protected void onPause()
-    {
-        super.onPause();
-
-        Log.d(ServiceTimer.TAG,"onPause quitando broadcast");
-
-        unregisterReceiver(broadcastReceiver);
-    }
-
-    @Override
-    protected void onDestroy()
-    {
-        super.onDestroy();
-
-        Log.d(ServiceTimer.TAG,"OnDestroy, terminando servicio");
-
-        stopService(new Intent(getApplicationContext(), ServiceTimer.class));
     }
 }

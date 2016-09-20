@@ -25,6 +25,7 @@ public abstract class LoginActivityDMO extends AppCompatActivity
     protected ModelUser user;
 
     protected Intent intent;
+    protected Intent intent_service;
 
     protected String user_email;
     protected String pass;

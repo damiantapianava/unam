@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 public abstract class DetailsActivityDMO extends AppCompatActivity
 {
+    protected Context context;
+
     protected FragmentManager manager;
 
     protected ProfileFragment fragment_profile;
@@ -23,6 +25,8 @@ public abstract class DetailsActivityDMO extends AppCompatActivity
     protected TextView txt;
     protected TextView txtTimer;
 
+    protected PreferenceUtil preference;
+
     protected String user_email;
 
     protected int profile_id;
@@ -30,6 +34,7 @@ public abstract class DetailsActivityDMO extends AppCompatActivity
     protected final int LETRA_INICIAL = 0;
 
     protected int letra_inicial;
+    protected int counter;
 
     protected boolean rango_AM_ENABLED;
     protected boolean rango_NZ_ENABLED;
@@ -39,7 +44,7 @@ public abstract class DetailsActivityDMO extends AppCompatActivity
         @Override
         public void onReceive(Context context, Intent intent)
         {
-            int counter = intent.getExtras().getInt("timer");
+            counter = intent.getExtras().getInt("timer");
 
             txtTimer.setText(String.format("Session lenght %s seconds", counter));
         }

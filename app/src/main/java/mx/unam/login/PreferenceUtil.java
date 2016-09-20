@@ -18,6 +18,16 @@ public class PreferenceUtil
         sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
     }
 
+    public void saveElapsedTime(int seconds)
+    {
+        sp.edit().putInt("elapsed_time", seconds);
+    }
+
+    public int getElapsedTime()
+    {
+        return sp.getInt("elapsed_time", 0);
+    }
+
     public void saveUserId(ModelUser modelUser)
     {
         sp.edit().putInt("user_id",  modelUser.getId()).apply();

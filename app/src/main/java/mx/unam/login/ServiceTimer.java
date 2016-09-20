@@ -1,33 +1,13 @@
 package mx.unam.login;
 
-import android.app.Service;
 import android.content.Intent;
-import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-/**
- * Created by hacke on 18/06/2016.
- */
-public class ServiceTimer extends Service
-{
-    public static final String TAG = "unam_tag";
-    public static final String ACTION_SEND_TIMER ="com.unam.clase.SEND_TIMER";
-    int counter;
-    private Handler handler = new Handler();
-    private Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            counter++;
-            handler.postDelayed(runnable,1000);
-            Intent i = new Intent(ACTION_SEND_TIMER);
-            i.putExtra("timer",counter);
-            sendBroadcast(i);
-            Log.d(TAG,"contador "+counter);
-        }
-    };
 
+public class ServiceTimer extends ServiceTimerDMO
+{
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -35,22 +15,32 @@ public class ServiceTimer extends Service
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(TAG,"OnstartCommand called");
-        return START_STICKY;
-    }
-
-    @Override
-    public void onCreate() {
+    public void onCreate()
+    {
         super.onCreate();
-        Log.d(TAG,"Oncreate servicio");
+
+        Log.d(TAG, "ServiceTimer.onCreate(): ");
+
         handler.post(runnable);
     }
 
     @Override
-    public void onDestroy() {
+    public int onStartCommand(Intent intent, int flags, int startId)
+    {
+        elapsed_time = intent.getExtras().getInt("elapsed_time");
+
+        Log.d(TAG, "ServiceTimer.onStartCommand(): " + elapsed_time);
+
+        return START_STICKY;
+    }
+
+    @Override
+    public void onDestroy()
+    {
         super.onDestroy();
-        Log.d(TAG,"OnDestroy Servicio");
+
+        Log.d(TAG, "ServiceTimer.OnDestroy(): ");
+
         handler.removeCallbacks(runnable);
     }
 }
